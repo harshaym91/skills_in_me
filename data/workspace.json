@@ -1,0 +1,13 @@
+{
+  "projects": [
+    { "id": "proj-studio", "name": "Studio refresh", "color": "sage" },
+    { "id": "proj-personal", "name": "Personal", "color": "coral" },
+    { "id": "proj-learning", "name": "Learning", "color": "blue" }
+  ],
+  "tasks": [
+    { "id": "task-1", "title": "Send revised project brief to Maya", "notes": "", "projectId": "proj-studio", "priority": "high", "due": "2026-09-09", "completed": false, "createdAt": 1757400000000 },
+    { "id": "task-2", "title": "Book dentist appointment", "notes": "", "projectId": "proj-personal", "priority": "medium", "due": "2026-09-09", "completed": false, "createdAt": 1757400010000 },
+    { "id": "task-3", "title": "Read chapter four of The Creative Act", "notes": "", "projectId": "proj-learning", "priority": "low", "due": "2026-09-12", "completed": false, "createdAt": 1757400020000 },
+    { "id": "task-4", "title": "Archive old research notes", "notes": "", "projectId": "proj-studio", "priority": "low", "due": "", "completed": true, "createdAt": 1757400030000 }
+  ]
+}

@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f4f1ea" />
+    <link rel="icon" href="data:," />
+    <title>Daymark | Todo workbench</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="Main navigation">
+        <div class="brand"><span class="brand-mark">D</span><span>daymark</span></div>
+        <div class="workspace-switcher"><span class="avatar">JD</span><span><strong>Jordan's space</strong><small>Personal workspace</small></span><span class="chevron">⌄</span></div>
+        <nav class="primary-nav">
+          <p class="eyebrow">Views</p>
+          <button class="nav-item active" data-view="inbox"><span class="nav-icon">□</span><span>Inbox</span><span class="nav-count" data-count="inbox">0</span></button>
+          <button class="nav-item" data-view="today"><span class="nav-icon">◷</span><span>Today</span><span class="nav-count" data-count="today">0</span></button>
+          <button class="nav-item" data-view="upcoming"><span class="nav-icon">▤</span><span>Upcoming</span><span class="nav-count" data-count="upcoming">0</span></button>
+          <button class="nav-item" data-view="completed"><span class="nav-icon">✓</span><span>Completed</span><span class="nav-count" data-count="completed">0</span></button>
+        </nav>
+        <div class="projects-nav">
+          <div class="section-heading"><p class="eyebrow">Projects</p><button class="icon-button" id="add-project" aria-label="Add project">+</button></div>
+          <div id="project-list"></div>
+        </div>
+        <div class="sidebar-footer"><button class="nav-item"><span class="nav-icon">?</span><span>Help center</span></button><div class="sync-status"><span class="sync-dot"></span><span>Saved locally</span></div></div>
+      </aside>
+
+      <main class="main-content">
+        <header class="topbar"><button class="mobile-menu" id="mobile-menu" aria-label="Open navigation">☰</button><div class="breadcrumb"><span>Workspace</span><span>/</span><strong id="breadcrumb-title">Inbox</strong></div><div class="topbar-actions"><button class="icon-button" aria-label="Notifications">♢</button><button class="avatar avatar-small" aria-label="Open profile">JD</button></div></header>
+        <div class="content-wrap">
+          <section class="page-heading"><div><div class="date-kicker" id="date-kicker">MONDAY, SEPTEMBER 9</div><h1 id="page-title">Inbox</h1><p id="page-subtitle">Everything that needs your attention.</p></div><button class="primary-button" id="quick-add"><span>+</span> Add task</button></section>
+          <section class="overview-strip"><div class="focus-copy"><span class="focus-pulse"></span><span id="focus-message">You have a clear runway today.</span></div><div class="progress-wrap"><span id="progress-label">0 of 0 complete</span><div class="progress-track"><div class="progress-bar" id="progress-bar"></div></div></div></section>
+          <section class="toolbar"><div class="search-field"><span>⌕</span><input id="search-input" type="search" placeholder="Search tasks" aria-label="Search tasks" /></div><div class="filter-group"><select id="priority-filter" aria-label="Filter by priority"><option value="all">All priorities</option><option value="high">High priority</option><option value="medium">Medium priority</option><option value="low">Low priority</option></select><select id="sort-select" aria-label="Sort tasks"><option value="smart">Smart sort</option><option value="due">Due date</option><option value="priority">Priority</option><option value="newest">Recently added</option></select></div></section>
+          <section class="task-section"><div class="section-heading task-heading"><div><span class="section-label">TASKS</span><span class="task-count" id="visible-count">0</span></div><button class="text-button" id="clear-completed">Clear completed</button></div><div id="task-list" class="task-list"></div><div id="empty-state" class="empty-state hidden"><div class="empty-art">✦</div><h2 id="empty-title">Your list is clear</h2><p id="empty-copy">A quiet inbox is a good place to start. Add a task whenever something comes to mind.</p><button class="secondary-button" id="empty-add">Add your first task</button></div></section>
+        </div>
+      </main>
+    </div>
+
+    <dialog id="task-dialog" class="task-dialog"><form method="dialog" id="task-form"><div class="dialog-header"><div><span class="section-label">QUICK CAPTURE</span><h2 id="dialog-title">Add a new task</h2></div><button class="icon-button" value="cancel" aria-label="Close">×</button></div><label>Task title<input id="task-title" name="title" required maxlength="120" placeholder="What needs to get done?" /></label><label>Notes <span class="optional">Optional</span><textarea id="task-notes" name="notes" rows="3" placeholder="Add useful context..."></textarea></label><div class="form-grid"><label>Project<select id="task-project" name="project"></select></label><label>Priority<select id="task-priority" name="priority"><option value="high">High</option><option value="medium" selected>Medium</option><option value="low">Low</option></select></label></div><label>Due date<input id="task-due" name="due" type="date" /></label><input id="task-id" type="hidden" /><div class="dialog-actions"><button class="secondary-button" value="cancel">Cancel</button><button class="primary-button" id="save-task" value="default">Save task</button></div></form></dialog>
+    <dialog id="project-dialog" class="task-dialog"><form method="dialog" id="project-form"><div class="dialog-header"><div><span class="section-label">ORGANIZE</span><h2>Add a project</h2></div><button class="icon-button" value="cancel" aria-label="Close">×</button></div><label>Project name<input id="project-name" required maxlength="40" placeholder="e.g. Home refresh" /></label><label>Accent color<select id="project-color"><option value="sage">Sage</option><option value="coral">Coral</option><option value="blue">Blue</option><option value="gold">Gold</option></select></label><div class="dialog-actions"><button class="secondary-button" value="cancel">Cancel</button><button class="primary-button" value="default">Create project</button></div></form></dialog>
+    <script src="app.js"></script>
+  </body>
+</html>
