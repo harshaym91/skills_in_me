@@ -1,0 +1,12 @@
+import { Router } from 'express';
+import { createTodo, deleteTodo, getTodo, listTodos, updateTodo } from '../controllers/todoController.js';
+import { asyncHandler, requireAuth } from '../middleware/auth.js';
+const router = Router();
+router.use(requireAuth);
+router.get('/', asyncHandler(listTodos));
+router.get('/:id', asyncHandler(getTodo));
+router.post('/', asyncHandler(createTodo));
+router.put('/:id', asyncHandler(updateTodo));
+router.patch('/:id', asyncHandler(updateTodo));
+router.delete('/:id', asyncHandler(deleteTodo));
+export default router;
